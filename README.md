@@ -2,6 +2,8 @@
 
 Todo App ที่สร้างด้วย Next.js 15, TypeScript, Prisma ORM และ PostgreSQL พร้อมฟีเจอร์ครบครัน
 
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/YOUR_USERNAME/simple-todo-app)
+
 ## ✨ ฟีเจอร์หลัก
 
 - ✅ **จัดการ Todo** - เพิ่ม แก้ไข ลบ และทำเครื่องหมายเสร็จ
@@ -127,6 +129,59 @@ bun run lint           # ตรวจสอบ code quality
 3. **ทำเครื่องหมายเสร็จ**: คลิกช่องสี่เหลี่ยมด้านซ้าย
 4. **ลบ Todo**: คลิกไอคอนถังขยะ
 5. **กรอง**: ใช้ตัวกรองด้านบนเพื่อดู Todo ตามต้องการ
+
+## 🚀 Deploy บน Vercel
+
+### วิธีการ Deploy แบบง่าย
+
+1. **Push โค้ดขึ้น GitHub**
+   ```bash
+   git add .
+   git commit -m "Ready for deployment"
+   git push origin main
+   ```
+
+2. **เชื่อมต่อกับ Vercel**
+   - ไปที่ [vercel.com](https://vercel.com)
+   - เชื่อมต่อกับ GitHub account
+   - Import โปรเจค
+   - Vercel จะ detect Next.js โดยอัตโนมัติ
+
+3. **ตั้งค่า Environment Variables**
+   ใน Vercel Dashboard ไปที่ Settings > Environment Variables และเพิ่ม:
+   ```
+   DATABASE_URL=your_neon_database_url_here
+   ```
+
+4. **Deploy**
+   - Vercel จะ build และ deploy โดยอัตโนมัติ
+   - Prisma จะ generate client ตอน build ผ่าน `postinstall` script
+
+### วิธีการ Deploy ด้วย Vercel CLI
+
+```bash
+# ติดตั้ง Vercel CLI
+npm i -g vercel
+
+# Login
+vercel login
+
+# Deploy
+vercel
+
+# ตั้งค่า environment variable
+vercel env add DATABASE_URL
+
+# Deploy production
+vercel --prod
+```
+
+### หมายเหตุสำหรับ Production
+
+1. **Database**: ใช้ Neon PostgreSQL (รองรับ connection pooling)
+2. **Environment Variables**: ตั้งค่า DATABASE_URL ใน Vercel Dashboard
+3. **Build**: Prisma Client จะถูก generate อัตโนมัติใน build process
+4. **Functions**: API routes จะรันบน Vercel Edge Functions
 
 ## 🤝 การพัฒนาต่อ
 
